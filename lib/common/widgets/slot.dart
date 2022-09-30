@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:tns_slot_booking/common/utility/colors.dart';
 
 //TODO slotDuration will be Duration type and slot icon should be passed from user
-class SlotWidget extends StatelessWidget {
+class SlotWidget extends StatefulWidget {
   SlotWidget(
       {Key? key,
       required this.time,
@@ -43,12 +43,17 @@ class SlotWidget extends StatelessWidget {
   final int? slotDuration;
 
   @override
+  State<SlotWidget> createState() => _SlotWidgetState();
+}
+
+class _SlotWidgetState extends State<SlotWidget> {
+  @override
   Widget build(BuildContext context) {
     final DateFormat formatter = DateFormat('jm');
 
     return GestureDetector(
       onTap: () {
-        onTapped(time);
+        widget.onTapped(widget.time);
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -72,7 +77,7 @@ class SlotWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  formatter.format(time),
+                  formatter.format(widget.time),
                   style: TextStyle(
                     fontSize: 15,
                     fontFamily: 'Product Sans',
@@ -93,7 +98,7 @@ class SlotWidget extends StatelessWidget {
                                     topLeft: Radius.circular(5),
                                     bottomRight: Radius.circular(15))),
                             child: Icon(
-                              slotIcon ?? Icons.video_call_rounded,
+                              widget.slotIcon ?? Icons.video_call_rounded,
                               color: CustomColor.white,
                               size: 15,
                             ),
@@ -110,15 +115,15 @@ class SlotWidget extends StatelessWidget {
   }
 
   Color? getSlotColor() {
-    if (isAvailable ?? false) {
-      return availableSlotColor;
-    } else if (isSelected ?? false) {
-      return selectedSlotColor;
-    } else if (isBooked ?? false) {
-      return bookedSlotColor;
-    } else if (isPaused ?? false) {
-      return pauseSlotColor;
-    } else if (isDeselected ?? false) {
+    if (widget.isAvailable ?? false) {
+      return widget.availableSlotColor;
+    } else if (widget.isSelected ?? false) {
+      return widget.selectedSlotColor;
+    } else if (widget.isBooked ?? false) {
+      return widget.bookedSlotColor;
+    } else if (widget.isPaused ?? false) {
+      return widget.pauseSlotColor;
+    } else if (widget.isDeselected ?? false) {
       return Colors.grey[200];
     } else {
       return Colors.grey[200];
@@ -127,11 +132,13 @@ class SlotWidget extends StatelessWidget {
 
   bool shouldShowSloticon() {
     var present = false;
-    if (DateTime.now().isAfter(time) &&
-        DateTime.now()
-            .isBefore(time.add(Duration(minutes: slotDuration ?? 0)))) {
-      present = true;
+    if (DateTime.now().isAfter(widget.time) &&
+        DateTime.now().isBefore(
+            widget.time.add(Duration(minutes: widget.slotDuration ?? 0)))) {
+      setState(() {
+        present = true;
+      });
     }
-    return present && (shouldShowSlotIcon ?? false);
+    return present && (widget.shouldShowSlotIcon ?? false);
   }
 }
