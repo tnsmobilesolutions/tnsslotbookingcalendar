@@ -23,6 +23,7 @@ class SessionSlotsWidget extends StatefulWidget {
     this.shouldShowSlotIcon,
     this.slotDuration,
     this.slotIcon,
+    this.bookedSlots,
   }) : super(key: key);
   final IconData? slotIcon;
   final String sessionTitle;
@@ -33,6 +34,8 @@ class SessionSlotsWidget extends StatefulWidget {
   final Color? borderColor;
   final List<DateTime?>? selectedSlots;
   final List<DateTime?>? availableSlots;
+  final List<DateTime?>? bookedSlots;
+
   final Color? bookedSlotColor;
   final Color? selectedSlotColor;
   final Color? availableSlotColor;
@@ -81,6 +84,8 @@ class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
                   widget.sessionSlots[index], widget.selectedSlots),
               isAvailable: SlotGenerator.isSlotPresent(
                   widget.sessionSlots[index], widget.availableSlots),
+              isBooked: SlotGenerator.isSlotPresent(
+                  widget.sessionSlots[index], widget.bookedSlots),
               time: widget.sessionSlots[index],
               deselectedTime: widget.sessionSlots[index],
               onTapped: widget.onSlotSelected,

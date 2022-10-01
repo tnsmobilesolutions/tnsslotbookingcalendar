@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tns_slot_booking/common/utility/colors.dart';
 
-//TODO slotDuration will be Duration type and slot icon should be passed from user
 class SlotWidget extends StatefulWidget {
   SlotWidget(
       {Key? key,
@@ -134,7 +133,8 @@ class _SlotWidgetState extends State<SlotWidget> {
     var present = false;
     if (DateTime.now().isAfter(widget.time) &&
         DateTime.now().isBefore(
-            widget.time.add(Duration(minutes: widget.slotDuration ?? 0)))) {
+            widget.time.add(Duration(minutes: widget.slotDuration ?? 0))) &&
+        (widget.isBooked ?? false)) {
       setState(() {
         present = true;
       });

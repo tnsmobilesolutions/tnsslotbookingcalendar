@@ -39,6 +39,7 @@ class CalendarSlotSelector extends StatefulWidget {
     this.shouldShowSlotIcon,
     this.shouldHideUnusedSlots,
     this.slotIcon,
+    this.bookedSlots,
   }) : super(key: key);
   final IconData? slotIcon;
   final int? morningSessionStartTime;
@@ -49,6 +50,7 @@ class CalendarSlotSelector extends StatefulWidget {
   final int? eveningSessionEndTime;
   final int? slotDuration;
   final List<DateTime?>? availableSlots;
+  final List<DateTime?>? bookedSlots;
   final List<DateTime?>? hideSlots;
   final bool? isMultiSelectMode;
   final Color? bookedSlotColor;
@@ -168,6 +170,7 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
               SessionSlotsWidget(
                 selectedSlots: selectedMultiSlotDateTime,
                 availableSlots: widget.availableSlots,
+                bookedSlots: widget.bookedSlots,
                 sessionTitle: "Morning",
                 sessionIcon: AssetImage(
                     'assets/images/slot_booking_icons/sunrise24.png'),
@@ -203,6 +206,7 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
               SessionSlotsWidget(
                 selectedSlots: selectedMultiSlotDateTime,
                 availableSlots: widget.availableSlots,
+                bookedSlots: widget.bookedSlots,
                 sessionTitle: "Afternoon",
                 sessionIcon:
                     AssetImage('assets/images/slot_booking_icons/noon.png'),
@@ -242,6 +246,7 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
               SessionSlotsWidget(
                 selectedSlots: selectedMultiSlotDateTime,
                 availableSlots: widget.availableSlots,
+                bookedSlots: widget.bookedSlots,
                 sessionTitle: "Evening",
                 sessionIcon:
                     AssetImage('assets/images/slot_booking_icons/evening.png'),
