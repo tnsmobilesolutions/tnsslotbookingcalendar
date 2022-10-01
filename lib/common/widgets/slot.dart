@@ -132,11 +132,9 @@ class _SlotWidgetState extends State<SlotWidget> {
 
   bool shouldShowSloticon() {
     var present = false;
-    if (true
-      // DateTime.now().isAfter(widget.time) &&
-      //   DateTime.now().isBefore(
-      //       widget.time.add(Duration(minutes: widget.slotDuration ?? 0)))
-            ) {
+    if (DateTime.now().isAfter(widget.time) &&
+        DateTime.now().isBefore(
+            widget.time.add(Duration(minutes: widget.slotDuration ?? 0)))) {
       setState(() {
         present = true;
       });
