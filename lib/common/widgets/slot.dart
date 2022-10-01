@@ -84,7 +84,7 @@ class _SlotWidgetState extends State<SlotWidget> {
                   ),
                 ),
               ),
-              shouldShowSloticon()
+              shouldShowIcon()
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -130,7 +130,7 @@ class _SlotWidgetState extends State<SlotWidget> {
     }
   }
 
-  bool shouldShowSloticon() {
+  bool shouldShowIcon() {
     var present = false;
     if (DateTime.now().isAfter(widget.time) &&
         DateTime.now().isBefore(
