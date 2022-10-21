@@ -1,11 +1,7 @@
 // ignore_for_file: prefer__ructors, prefer__literals_to_create_immutables, library_private_types_in_public_api, prefer__ructors_in_immutables, use_build_context_synchronously, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:tns_slot_booking/common/utility/colors.dart';
-import 'package:tns_slot_booking/common/utility/slot_generator.dart';
-import 'package:tns_slot_booking/common/utility/widgets.dart';
-import 'package:tns_slot_booking/common/widgets/calendar_widget.dart';
-import 'package:tns_slot_booking/common/widgets/session_slots.dart';
+import 'package:tns_slot_booking/tns_slot_booking.dart';
 
 typedef List2VoidFunc = void Function(List<DateTime?>?);
 typedef Date2VoidFunc = void Function(DateTime?);
@@ -104,25 +100,66 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
     super.initState();
   }
 
-  Future<void> showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 233, 246, 253),
-          title: Center(child: Text('Sign Out')),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Center(child: Text('Do you want to sign out ?')),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // Future<void> showMyDialog() async {
+  //   return showDialog<void>(
+  //     context: context,
+  //     barrierDismissible: false, // user must tap button!
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         backgroundColor: Color.fromARGB(255, 230, 148, 175),
+  //         title: const Center(child: Text('Sign Out')),
+  //         content: SingleChildScrollView(
+  //           child: ListBody(
+  //             children: const <Widget>[
+  //               Center(child: Text('Do you want to sign out ?')),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //             children: [
+  //               TextButton(
+  //                 child: const Text(
+  //                   'No',
+  //                   style: TextStyle(color: Colors.yellow),
+  //                 ),
+  //                 onPressed: () {
+  //                   Navigator.of(context).pop();
+  //                 },
+  //               ),
+  //               TextButton(
+  //                 child: const Text(
+  //                   'Yes',
+  //                   style: TextStyle(color: Colors.yellow),
+  //                 ),
+  //                 onPressed: () async {
+  //                   await UserAPI().logout();
+  //                   Navigator.popUntil(context, (route) => route.isFirst);
+  //                   Navigator.push(
+  //                     context,
+  //                     MaterialPageRoute(
+  //                       builder: (context) => LogIn(),
+  //                     ),
+  //                   );
+  //                   ScaffoldMessenger.of(context).showSnackBar(
+  //                     const SnackBar(
+  //                       elevation: 6,
+  //                       behavior: SnackBarBehavior.floating,
+  //                       content: Text(
+  //                         'You are Logged Out',
+  //                       ),
+  //                     ),
+  //                   );
+  //                 },
+  //               ),
+  //             ],
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -130,12 +167,12 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: showMyDialog,
-            icon: Icon(Icons.logout_rounded),
-          )
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: showMyDialog,
+        //     icon: Icon(Icons.logout_rounded),
+        //   )
+        // ],
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 20, right: 20),
@@ -234,7 +271,7 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
                     widget.selectedSlotColor ?? CustomColor.lightPink,
                 availableSlotColor: widget.availableSlotColor,
                 selectedSlotColor: widget.selectedSlotColor,
-                bookedSlotColor: widget.bookedSlotColor,
+                bookedSlotColor: widget.bookedSlotColor ?? Colors.blue,
                 pauseSlotColor: widget.pauseSlotColor,
                 shouldShowSlotIcon: widget.shouldShowSlotIcon,
                 slotDuration: widget.slotDuration,

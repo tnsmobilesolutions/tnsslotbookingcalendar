@@ -62,9 +62,6 @@ class _SlotWidgetState extends State<SlotWidget> {
         ),
         decoration: BoxDecoration(
           color: getSlotColor(),
-          // border: Border.all(
-          //   color: getSlotColor() as Color,
-          // ),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Padding(

@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
-import 'package:tns_slot_booking/common/utility/slot_generator.dart';
-import 'package:tns_slot_booking/common/widgets/slot.dart';
+import 'package:tns_slot_booking/tns_slot_booking.dart';
 
 class SessionSlotsWidget extends StatefulWidget {
   SessionSlotsWidget({
@@ -35,7 +34,6 @@ class SessionSlotsWidget extends StatefulWidget {
   final List<DateTime?>? selectedSlots;
   final List<DateTime?>? availableSlots;
   final List<DateTime?>? bookedSlots;
-
   final Color? bookedSlotColor;
   final Color? selectedSlotColor;
   final Color? availableSlotColor;
@@ -49,6 +47,12 @@ class SessionSlotsWidget extends StatefulWidget {
 }
 
 class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
+  @override
+  void initState() {
+    super.initState();
+    print('slot duration - ${widget.slotDuration}');
+  }
+
   int selectedSlot = -1;
   @override
   Widget build(BuildContext context) {
