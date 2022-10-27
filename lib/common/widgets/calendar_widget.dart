@@ -6,17 +6,24 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tns_slot_booking/common/utility/colors.dart';
 
-class CalendarWidget extends StatelessWidget {
+class CalendarWidget extends StatefulWidget {
   CalendarWidget({Key? key, this.onDateTimeChanged}) : super(key: key);
   final ValueChanged<DateTime>? onDateTimeChanged;
 
+  @override
+  State<CalendarWidget> createState() => _CalendarWidgetState();
+}
+
+class _CalendarWidgetState extends State<CalendarWidget> {
   @override
   Widget build(BuildContext context) {
     DateTime selectedDate = DateTime.now();
     return CalendarCarousel<Event>(
       onDayPressed: (date, events) {
-        onDateTimeChanged!(date);
-        selectedDate = date;
+        setState(() {
+          widget.onDateTimeChanged!(date);
+          selectedDate = date;
+        });
       },
       isScrollable: false,
       weekendTextStyle: TextStyle(
