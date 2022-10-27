@@ -18,6 +18,7 @@ class CalendarWidget extends StatelessWidget {
         onDateTimeChanged!(date);
         selectedDate = date;
       },
+      isScrollable: false,
       weekendTextStyle: TextStyle(
         color: CustomColor.purple,
       ),
@@ -30,6 +31,7 @@ class CalendarWidget extends StatelessWidget {
       headerText: DateFormat.MMMM().format(DateTime.now()),
       weekFormat: true,
       height: 150.0,
+      showOnlyCurrentMonthDate: false,
       selectedDateTime: selectedDate,
       showIconBehindDayText: true,
       daysHaveCircularBorder: true,
