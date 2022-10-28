@@ -81,7 +81,7 @@ class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
           addAutomaticKeepAlives: false,
           physics: ScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
+            crossAxisCount: 3,
           ),
           shrinkWrap: true,
           itemCount: widget.sessionSlots.length,
