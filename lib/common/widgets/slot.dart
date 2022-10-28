@@ -5,29 +5,31 @@ import 'package:intl/intl.dart';
 import 'package:tns_slot_booking/common/utility/colors.dart';
 
 class SlotWidget extends StatefulWidget {
-  SlotWidget(
-      {Key? key,
-      required this.time,
-      required this.deselectedTime,
-      required this.onTapped,
-      this.borderColor,
-      this.bookedSlotColor,
-      this.selectedSlotColor,
-      this.availableSlotColor,
-      this.pauseSlotColor,
-      this.isAvailable,
-      this.isSelected,
-      this.isDeselected,
-      this.isBooked,
-      this.isPaused,
-      this.shouldShowSlotIcon,
-      this.slotDuration,
-      this.slotIcon})
-      : super(key: key);
+  SlotWidget({
+    Key? key,
+    required this.time,
+    required this.deselectedTime,
+    required this.onTapped,
+    required this.onLongPressed,
+    this.borderColor,
+    this.bookedSlotColor,
+    this.selectedSlotColor,
+    this.availableSlotColor,
+    this.pauseSlotColor,
+    this.isAvailable,
+    this.isSelected,
+    this.isDeselected,
+    this.isBooked,
+    this.isPaused,
+    this.shouldShowSlotIcon,
+    this.slotDuration,
+    this.slotIcon,
+  }) : super(key: key);
   final IconData? slotIcon;
   final DateTime time;
   final DateTime deselectedTime;
   final Function onTapped;
+  final Function onLongPressed;
   final Color? borderColor;
   final Color? bookedSlotColor;
   final Color? selectedSlotColor;
@@ -47,12 +49,20 @@ class SlotWidget extends StatefulWidget {
 
 class _SlotWidgetState extends State<SlotWidget> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final DateFormat formatter = DateFormat('jm');
 
     return GestureDetector(
       onTap: () {
         widget.onTapped(widget.time);
+      },
+      onLongPress: () {
+        widget.onLongPressed(widget.time);
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -69,38 +79,43 @@ class _SlotWidgetState extends State<SlotWidget> {
             left: 10,
             top: 20,
           ),
-          child: Row(
+          child: Stack(
+            alignment: AlignmentDirectional.bottomEnd,
             children: [
-              Expanded(
-                child: Text(
-                  formatter.format(widget.time),
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontFamily: 'Product Sans',
-                  ),
-                ),
-              ),
-              shouldShowIcon()
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          child: Container(
-                            height: 20,
-                            width: 20,
-                            decoration: BoxDecoration(
-                                color: CustomColor.lightGreen,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    bottomRight: Radius.circular(15))),
-                            child: Icon(
-                              widget.slotIcon ?? Icons.video_call_rounded,
-                              color: CustomColor.white,
-                              size: 15,
+              Column(
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            formatter.format(widget.time),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'Product Sans',
                             ),
                           ),
-                        )
-                      ],
+                          SizedBox(height: 4),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              shouldShowIcon()
+                  ? Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                          color: CustomColor.lightGreen,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              bottomRight: Radius.circular(15))),
+                      child: Icon(
+                        widget.slotIcon ?? Icons.video_call_rounded,
+                        color: CustomColor.white,
+                        size: 15,
+                      ),
                     )
                   : SizedBox(height: 0),
             ],
