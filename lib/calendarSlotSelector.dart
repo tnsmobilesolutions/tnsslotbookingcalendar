@@ -42,34 +42,35 @@ class CalendarSlotSelector extends StatefulWidget {
     this.slotIcon,
     this.bookedSlots,
   }) : super(key: key);
-  final IconData? slotIcon;
-  final int? morningSessionStartTime;
-  final int? morningSessionEndTime;
-  final int? afternoonSessionStartTime;
+
   final int? afternoonSessionEndTime;
-  final int? eveningSessionStartTime;
-  final int? eveningSessionEndTime;
-  final int? slotDuration;
+  final int? afternoonSessionStartTime;
+  final Color? availableSlotColor;
+  final String? availableSlotText;
   final List<DateTime?>? availableSlots;
+  final Color? bookedSlotColor;
+  final String? bookedSlotText;
   final List<DateTime?>? bookedSlots;
+  final Color? bookingButtonColor;
+  final String? bookingButtonText;
+  final Color? borderColor;
+  final int? eveningSessionEndTime;
+  final int? eveningSessionStartTime;
   final List<DateTime?>? hideSlots;
   final bool? isMultiSelectMode;
-  final Color? bookedSlotColor;
-  final Color? selectedSlotColor;
-  final Color? availableSlotColor;
-  final Color? pauseSlotColor;
-  final String? selectedSlotText;
-  final String? availableSlotText;
-  final String? bookedSlotText;
-  final String? pauseSlotText;
-  final String? bookingButtonText;
-  final Color? bookingButtonColor;
-  final Color? borderColor;
+  final int? morningSessionEndTime;
+  final int? morningSessionStartTime;
   final List2VoidFunc? onApply;
-  final Date2VoidFunc? onSlotSelected;
   final Date2VoidFunc? onSlotLongPressed;
-  final bool? shouldShowSlotIcon;
+  final Date2VoidFunc? onSlotSelected;
+  final Color? pauseSlotColor;
+  final String? pauseSlotText;
+  final Color? selectedSlotColor;
+  final String? selectedSlotText;
   final bool? shouldHideUnusedSlots;
+  final bool? shouldShowSlotIcon;
+  final int? slotDuration;
+  final IconData? slotIcon;
 
   @override
   _CalendarSlotSelectorState createState() => _CalendarSlotSelectorState();
@@ -79,8 +80,9 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
   bool isDateSelected = false;
   List<DateTime?>? selectedMultiSlotDateTime;
 
+  DateTime _selectedDate = DateTime.now();
+
   onSlotsSelected(slotDateTime) {
-    //print(slotDateTime);
     setState(() {
       if (selectedMultiSlotDateTime != null &&
           selectedMultiSlotDateTime!.contains(slotDateTime)) {}
@@ -94,30 +96,18 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
     });
     if (widget.onSlotSelected != null) {
       widget.onSlotSelected!(slotDateTime);
-    } else {
-      //print("onSlotSelected callback is passed as null");
-    }
+    } else {}
   }
 
   onSlotLongPressed(slotDateTime) {
-    //print('slotDateTime - $slotDateTime');
-  }
-
-  DateTime _selectedDate = DateTime.now();
-
-  @override
-  void initState() {
-    super.initState();
+    if (widget.onSlotLongPressed != null) {
+      widget.onSlotLongPressed!(slotDateTime);
+    } else {}
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   automaticallyImplyLeading: false,
-      //   elevation: 0,
-      // ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 20, right: 20),
@@ -273,11 +263,8 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
                   onPressed: () {
                     if (widget.onApply != null) {
                       widget.onApply!(selectedMultiSlotDateTime);
-                      // Clear the multi slot selector list
                       selectedMultiSlotDateTime?.clear();
-                    } else {
-                      print("onApply method is set as null");
-                    }
+                    } else {}
                   },
                   child: Text(widget.bookingButtonText ?? 'Book'),
                 ),

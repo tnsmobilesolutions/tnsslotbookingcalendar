@@ -25,32 +25,57 @@ class SlotWidget extends StatefulWidget {
     this.slotDuration,
     this.slotIcon,
   }) : super(key: key);
-  final IconData? slotIcon;
-  final DateTime time;
-  final DateTime deselectedTime;
-  final Function onTapped;
-  final Function onLongPressed;
-  final Color? borderColor;
-  final Color? bookedSlotColor;
-  final Color? selectedSlotColor;
+
   final Color? availableSlotColor;
-  final Color? pauseSlotColor;
+  final Color? bookedSlotColor;
+  final Color? borderColor;
+  final DateTime deselectedTime;
   final bool? isAvailable;
-  final bool? isSelected;
-  final bool? isDeselected;
   final bool? isBooked;
+  final bool? isDeselected;
   final bool? isPaused;
+  final bool? isSelected;
+  final Function onLongPressed;
+  final Function onTapped;
+  final Color? pauseSlotColor;
+  final Color? selectedSlotColor;
   final bool? shouldShowSlotIcon;
   final int? slotDuration;
+  final IconData? slotIcon;
+  final DateTime time;
 
   @override
   State<SlotWidget> createState() => _SlotWidgetState();
 }
 
 class _SlotWidgetState extends State<SlotWidget> {
-  @override
-  void initState() {
-    super.initState();
+  Color? getSlotColor() {
+    if (widget.isAvailable ?? false) {
+      return widget.availableSlotColor;
+    } else if (widget.isSelected ?? false) {
+      return widget.selectedSlotColor;
+    } else if (widget.isBooked ?? false) {
+      return widget.bookedSlotColor;
+    } else if (widget.isPaused ?? false) {
+      return widget.pauseSlotColor;
+    } else if (widget.isDeselected ?? false) {
+      return Colors.grey[200];
+    } else {
+      return Colors.grey[200];
+    }
+  }
+
+  bool shouldShowIcon() {
+    var present = false;
+    if (DateTime.now().isAfter(widget.time) &&
+        DateTime.now().isBefore(
+            widget.time.add(Duration(minutes: widget.slotDuration ?? 0))) &&
+        (widget.isBooked ?? false)) {
+      setState(() {
+        present = true;
+      });
+    }
+    return present && (widget.shouldShowSlotIcon ?? false);
   }
 
   @override
@@ -123,34 +148,5 @@ class _SlotWidgetState extends State<SlotWidget> {
         ),
       ),
     );
-  }
-
-  Color? getSlotColor() {
-    if (widget.isAvailable ?? false) {
-      return widget.availableSlotColor;
-    } else if (widget.isSelected ?? false) {
-      return widget.selectedSlotColor;
-    } else if (widget.isBooked ?? false) {
-      return widget.bookedSlotColor;
-    } else if (widget.isPaused ?? false) {
-      return widget.pauseSlotColor;
-    } else if (widget.isDeselected ?? false) {
-      return Colors.grey[200];
-    } else {
-      return Colors.grey[200];
-    }
-  }
-
-  bool shouldShowIcon() {
-    var present = false;
-    if (DateTime.now().isAfter(widget.time) &&
-        DateTime.now().isBefore(
-            widget.time.add(Duration(minutes: widget.slotDuration ?? 0))) &&
-        (widget.isBooked ?? false)) {
-      setState(() {
-        present = true;
-      });
-    }
-    return present && (widget.shouldShowSlotIcon ?? false);
   }
 }

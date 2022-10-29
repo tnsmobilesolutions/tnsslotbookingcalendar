@@ -26,37 +26,33 @@ class SessionSlotsWidget extends StatefulWidget {
     this.slotIcon,
     this.bookedSlots,
   }) : super(key: key);
-  final IconData? slotIcon;
-  final String sessionTitle;
+
+  final Color? availableSlotColor;
+  final List<DateTime?>? availableSlots;
+  final Color? bookedSlotColor;
+  final List<DateTime?>? bookedSlots;
+  final Color? borderColor;
+  final Color? decorationColor;
+  final bool? isMultiSelectMode;
+  final Function onSlotLongPressed;
+  final Function onSlotSelected;
+  final Color? pauseSlotColor;
+  final Color? selectedSlotColor;
+  final List<DateTime?>? selectedSlots;
   final ImageProvider<Object> sessionIcon;
   final List<DateTime> sessionSlots;
-  final Function onSlotSelected;
-  final Function onSlotLongPressed;
-  final Color? decorationColor;
-  final Color? borderColor;
-  final List<DateTime?>? selectedSlots;
-  final List<DateTime?>? availableSlots;
-  final List<DateTime?>? bookedSlots;
-  final Color? bookedSlotColor;
-  final Color? selectedSlotColor;
-  final Color? availableSlotColor;
-  final Color? pauseSlotColor;
-  final bool? isMultiSelectMode;
+  final String sessionTitle;
   final bool? shouldShowSlotIcon;
   final int? slotDuration;
+  final IconData? slotIcon;
 
   @override
   State<SessionSlotsWidget> createState() => _SessionSlotsWidgetState();
 }
 
 class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
-  @override
-  void initState() {
-    super.initState();
-    print('slots booked - ${widget.bookedSlots?.length}');
-  }
-
   int selectedSlot = -1;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,7 +77,7 @@ class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
           addAutomaticKeepAlives: false,
           physics: ScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+            crossAxisCount: 4,
           ),
           shrinkWrap: true,
           itemCount: widget.sessionSlots.length,
