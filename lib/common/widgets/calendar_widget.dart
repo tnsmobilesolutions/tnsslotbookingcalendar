@@ -35,7 +35,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           Icon(Icons.arrow_right_rounded, size: 40, color: CustomColor.purple),
       thisMonthDayBorderColor: CustomColor.purple,
       headerTextStyle: TextStyle(color: CustomColor.purple, fontSize: 20),
-      headerText: DateFormat.MMMM().format(DateTime.now()),
       weekFormat: true,
       height: 150.0,
       showOnlyCurrentMonthDate: false,
