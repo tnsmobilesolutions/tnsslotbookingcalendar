@@ -8,21 +8,21 @@ class CustomWidgets extends StatelessWidget {
     this.bookedSlotColor,
     this.selectedSlotColor,
     this.availableSlotColor,
-    this.pauseSlotColor,
+    //this.pauseSlotColor,
     this.selectedSlotText,
     this.availableSlotText,
     this.bookedSlotText,
-    this.pauseSlotText,
+    //this.pauseSlotText,
   }) : super(key: key);
 
   final Color? bookedSlotColor;
   final Color? selectedSlotColor;
   final Color? availableSlotColor;
-  final Color? pauseSlotColor;
+  // final Color? pauseSlotColor;
   final String? selectedSlotText;
   final String? availableSlotText;
   final String? bookedSlotText;
-  final String? pauseSlotText;
+  //final String? pauseSlotText;
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +54,7 @@ class CustomWidgets extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+            const SizedBox(width: 20),
             Icon(
               Icons.rectangle_rounded,
               color: selectedSlotColor ?? Colors.yellow,
@@ -66,18 +62,6 @@ class CustomWidgets extends StatelessWidget {
             const SizedBox(width: 5),
             Text(
               selectedSlotText ?? 'Selected',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Icon(
-              Icons.rectangle_rounded,
-              color: pauseSlotColor ?? Colors.yellow,
-            ),
-            const SizedBox(width: 5),
-            Text(
-              pauseSlotText ?? 'Pause',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),

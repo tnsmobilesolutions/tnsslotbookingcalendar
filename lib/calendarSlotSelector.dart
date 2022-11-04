@@ -130,11 +130,11 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
                 CustomWidgets(
                   availableSlotColor: widget.availableSlotColor,
                   bookedSlotColor: widget.bookedSlotColor,
-                  pauseSlotColor: widget.pauseSlotColor,
+                  //pauseSlotColor: widget.pauseSlotColor,
                   selectedSlotColor: widget.selectedSlotColor,
                   availableSlotText: widget.availableSlotText,
                   bookedSlotText: widget.bookedSlotText,
-                  pauseSlotText: widget.pauseSlotText,
+                  //pauseSlotText: widget.pauseSlotText,
                   selectedSlotText: widget.selectedSlotText,
                 ),
                 SizedBox(height: 5),
