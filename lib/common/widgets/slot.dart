@@ -50,15 +50,15 @@ class SlotWidget extends StatefulWidget {
 
 class _SlotWidgetState extends State<SlotWidget> {
   Color? getSlotColor() {
-    if (widget.isAvailable ?? false) {
-      return widget.availableSlotColor;
-    } else if (widget.isSelected ?? false) {
-      return widget.selectedSlotColor;
-    } else if (widget.isBooked ?? false) {
+    if (widget.isBooked == true) {
       return widget.bookedSlotColor;
-    } else if (widget.isPaused ?? false) {
+    } else if (widget.isAvailable == true) {
+      return widget.availableSlotColor;
+    } else if (widget.isSelected == true) {
+      return widget.selectedSlotColor;
+    } else if (widget.isPaused == true) {
       return widget.pauseSlotColor;
-    } else if (widget.isDeselected ?? false) {
+    } else if (widget.isDeselected == true) {
       return Colors.grey[200];
     } else {
       return Colors.grey[200];
@@ -70,12 +70,12 @@ class _SlotWidgetState extends State<SlotWidget> {
     if (DateTime.now().isAfter(widget.time) &&
         DateTime.now().isBefore(
             widget.time.add(Duration(minutes: widget.slotDuration ?? 0))) &&
-        (widget.isBooked ?? false)) {
+        (widget.isBooked == true)) {
       setState(() {
         present = true;
       });
     }
-    return present && (widget.shouldShowSlotIcon ?? false);
+    return present && (widget.shouldShowSlotIcon == true);
   }
 
   @override
@@ -138,7 +138,7 @@ class _SlotWidgetState extends State<SlotWidget> {
                               bottomRight: Radius.circular(15))),
                       child: Icon(
                         widget.slotIcon ?? Icons.video_call_rounded,
-                        color: CustomColor.white,
+                        color: Colors.white,
                         size: 15,
                       ),
                     )
