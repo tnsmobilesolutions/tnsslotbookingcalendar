@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tns_slot_booking/common/utility/colors.dart';
 import 'package:tns_slot_booking/common/utility/slot_generator.dart';
 import 'package:tns_slot_booking/common/utility/widgets.dart';
+import 'package:tns_slot_booking/common/widgets/Custom_Calendar.dart';
 import 'package:tns_slot_booking/common/widgets/calendar_widget.dart';
 import 'package:tns_slot_booking/common/widgets/session_slots.dart';
 
@@ -116,13 +117,20 @@ class _CalendarSlotSelectorState extends State<CalendarSlotSelector> {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CalendarWidget(
+                  child: CustomCalendar(
                     onDateTimeChanged: (newDate) {
                       setState(() {
                         _selectedDate = newDate;
                       });
                     },
                   ),
+                  //  CalendarWidget(
+                  //   onDateTimeChanged: (newDate) {
+                  //     setState(() {
+                  //       _selectedDate = newDate;
+                  //     });
+                  //   },
+                  // ),
                 ),
                 SizedBox(height: 30),
                 Divider(thickness: 1),

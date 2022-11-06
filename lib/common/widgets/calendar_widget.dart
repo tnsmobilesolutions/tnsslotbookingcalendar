@@ -3,7 +3,6 @@
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:tns_slot_booking/common/utility/colors.dart';
 
 class CalendarWidget extends StatefulWidget {
