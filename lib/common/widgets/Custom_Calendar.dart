@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_const_constructors_in_immutables, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:tns_slot_booking/tns_slot_booking.dart';
 
 class CustomCalendar extends StatefulWidget {
   CustomCalendar({super.key, this.onDateTimeChanged});
@@ -51,7 +52,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
-                      color: Colors.indigo[700]),
+                      color: CustomColor.darkBlue),
                 )),
             SizedBox(height: 10),
             //To show CustomCalendar Widget
@@ -81,7 +82,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17),
                           color: currentDateSelectedIndex == index
-                              ? Colors.blue
+                              ? CustomColor.darkBlue
                               : Colors.grey[200]),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
