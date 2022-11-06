@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tns_slot_booking/common/utility/slot_generator.dart';
 import 'package:tns_slot_booking/common/widgets/slot.dart';
 
@@ -68,7 +69,8 @@ class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                fontFamily: 'Product Sans',
+                fontFamily: 'Poppins',
+                //'Product Sans',
               ),
             ),
           ],
