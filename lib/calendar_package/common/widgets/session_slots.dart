@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:tns_slot_booking/common/utility/slot_generator.dart';
-import 'package:tns_slot_booking/common/widgets/slot.dart';
+import 'package:tns_slot_booking/calendar_package/common/utility/slot_generator.dart';
+import 'package:tns_slot_booking/calendar_package/common/widgets/slot.dart';
 
 class SessionSlotsWidget extends StatefulWidget {
   SessionSlotsWidget({
@@ -26,11 +25,15 @@ class SessionSlotsWidget extends StatefulWidget {
     this.slotDuration,
     this.slotIcon,
     this.bookedSlots,
+    this.bookedSlotTextColor,
+    this.availableSlotTextColor,
+    this.selectedSlotTextColor,
   }) : super(key: key);
 
   final Color? availableSlotColor;
   final List<DateTime?>? availableSlots;
   final Color? bookedSlotColor;
+  final Color? bookedSlotTextColor;
   final List<DateTime?>? bookedSlots;
   final Color? borderColor;
   final Color? decorationColor;
@@ -40,12 +43,14 @@ class SessionSlotsWidget extends StatefulWidget {
   final Color? pauseSlotColor;
   final Color? selectedSlotColor;
   final List<DateTime?>? selectedSlots;
-  final ImageProvider<Object> sessionIcon;
+  final Icon sessionIcon;
   final List<DateTime> sessionSlots;
   final String sessionTitle;
   final bool? shouldShowSlotIcon;
   final int? slotDuration;
   final IconData? slotIcon;
+  final Color? availableSlotTextColor;
+  final Color? selectedSlotTextColor;
 
   @override
   State<SessionSlotsWidget> createState() => _SessionSlotsWidgetState();
@@ -60,18 +65,11 @@ class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
       children: [
         Row(
           children: [
-            Image(
-              image: widget.sessionIcon,
-            ),
+            widget.sessionIcon,
             SizedBox(width: 10),
             Text(
               widget.sessionTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                fontFamily: 'Poppins',
-                //'Product Sans',
-              ),
+              style: Theme.of(context).textTheme.headline2,
             ),
           ],
         ),
@@ -95,6 +93,9 @@ class _SessionSlotsWidgetState extends State<SessionSlotsWidget> {
               deselectedTime: widget.sessionSlots[index],
               onLongPressed: widget.onSlotLongPressed,
               onTapped: widget.onSlotSelected,
+              bookedSlotTextColor: widget.bookedSlotTextColor,
+              availableSlotTextColor: widget.availableSlotTextColor,
+              selectedSlotTextColor: widget.selectedSlotTextColor,
               borderColor: widget.borderColor ?? Colors.blue,
               availableSlotColor: widget.availableSlotColor,
               bookedSlotColor: widget.bookedSlotColor,

@@ -1,7 +1,6 @@
-export 'package:tns_slot_booking/calendarSlotSelector.dart';
-export 'package:tns_slot_booking/common/utility/colors.dart';
-export 'package:tns_slot_booking/common/utility/slot_generator.dart';
-export 'package:tns_slot_booking/common/utility/widgets.dart';
-export 'package:tns_slot_booking/common/widgets/calendar_widget.dart';
-export 'package:tns_slot_booking/common/widgets/session_slots.dart';
-export 'package:tns_slot_booking/common/widgets/slot.dart';
+export 'calendar_package/calendarSlotSelector.dart';
+export 'custom_color.dart';
+export 'calendar_package/common/utility/slot_generator.dart';
+export 'calendar_package/common/utility/widgets.dart';
+export 'calendar_package/common/widgets/session_slots.dart';
+export 'calendar_package/common/widgets/slot.dart';
